@@ -31,7 +31,14 @@ class RoomAdmin(admin.ModelAdmin):
         (
             "Basic Info",
             {
-                "fields": ("name", "description", "country", "address", "price"),
+                "fields": (
+                    "name",
+                    "description",
+                    "country",
+                    "city",
+                    "address",
+                    "price",
+                ),
             },
         ),
         (
@@ -101,6 +108,10 @@ class RoomAdmin(admin.ModelAdmin):
         "facilities",
         "house_rules",
     )
+
+    def save_model(self, request, obj, form, change):
+        # print(obj, change, form)
+        super().save_model(request, obj, form, change)
 
     def count_photos(self, obj):
         return obj.photos.count()
