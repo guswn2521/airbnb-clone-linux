@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand
 from django_seed import Seed
-from users.models import User
+from users.models import User as user_model
 
 
 class Command(BaseCommand):
@@ -20,7 +20,7 @@ class Command(BaseCommand):
         number = int(options.get("number"))
         seeder = Seed.seeder()
         seeder.add_entity(
-            User,
+            user_model,
             number,
             {
                 "is_staff": False,
