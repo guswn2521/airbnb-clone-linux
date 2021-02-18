@@ -57,7 +57,7 @@ class RoomAdmin(admin.ModelAdmin):
         (
             "spaces",
             {
-                "fields": ("guests", "beds", "bedrooms", "baths"),
+                "fields": ("guests", "beds", "bedrooms", "baths", "room_type"),
             },
         ),
         (
@@ -70,6 +70,7 @@ class RoomAdmin(admin.ModelAdmin):
 
     list_display = (
         "name",
+        "room_type",
         "country",
         "city",
         "price",
