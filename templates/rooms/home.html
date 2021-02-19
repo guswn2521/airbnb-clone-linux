@@ -7,13 +7,21 @@ home
 
 {% for room in rooms %}
 <h4>{{room.id}} | {{room.name}} / {{room.price}}</h4>
-
 {% endfor %}
-<h4>Page {{page}} / {{page_count}}</h4>
 
-{% for page in page_range %}
-<a href="/?page={{page}}">{{page}}</a>
-{% endfor %}
+<h4>
+{% if page is not 1 %}
+    <a href="/?page={{page|add:-1}}"> < </a>
+{% else %}
+    <
+{% endif %}
+Page {{page}} / {{page_count}}
+{% if not page == page_count %}
+    <a href="/?page={{page|add:1}}"> > </a>
+{% else %}
+    >
+{% endif %}
+</h4>
 
 {% endblock content %}
 
