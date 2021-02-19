@@ -9,6 +9,11 @@ home
 <h4>{{room.id}} | {{room.name}} / {{room.price}}</h4>
 
 {% endfor %}
+<h4>Page {{page}} / {{page_count}}</h4>
+
+{% for page in page_range %}
+<a href="/?page={{page}}">{{page}}</a>
+{% endfor %}
 
 {% endblock content %}
 
