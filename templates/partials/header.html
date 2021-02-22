@@ -12,6 +12,9 @@
         <ul>
             <li><a href="/">Login</a></li>
         </ul>
+        <form action="{% url "rooms:search" %}" method="get">
+            <input name="city" type="text" placeholder="Search by City">
+        </form>
     </header>
 </body>
 </html>
