@@ -1,6 +1,6 @@
 from django.views.generic import ListView, DetailView, View
 from django.shortcuts import render
-from django_countries import countries
+from django.core.paginator import Paginator
 from . import models, forms
 
 # Create your views here.
@@ -27,8 +27,9 @@ class RoomDetail(DetailView):
 class SearchView(View):
     def get(self, request):
         country = request.GET.get("country")
-        filter_args = {}
+
         if country:
+            filter_args = {}
             form = forms.SearchForm(request.GET)
             if form.is_valid():
                 city = form.cleaned_data.get("city")
@@ -79,14 +80,25 @@ class SearchView(View):
                 for facility in facilities:
                     filter_args["facilities"] = facility
 
-                rooms = models.Room.objects.filter(**filter_args)
+                qs = models.Room.objects.filter(**filter_args).order_by("-created")
+
+                paginator = Paginator(qs, 3, orphans=0)
+
+                page = request.GET.get("page", 1)
+
+                rooms = paginator.get_page(page)
+
+                return render(
+                    request,
+                    "rooms/search.html",
+                    {"form": form, "rooms": rooms},
+                )
 
         else:
             form = forms.SearchForm()
-            rooms = models.Room.objects.filter(**filter_args)
 
-        return render(
-            request,
-            "rooms/search.html",
-            {"form": form, "rooms": rooms},
-        )
+            return render(
+                request,
+                "rooms/search.html",
+                {"form": form},
+            )
