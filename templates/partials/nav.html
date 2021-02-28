@@ -10,8 +10,10 @@
     <a href="{% url "core:home" %}">Nbnb</a>
     <ul>
         {% if user.is_authenticated %}
+        <h3>Logged In!</h3>
         <li><a href="{% url "users:logout" %}">Log Out</a></li>
         {% else %}
+        <h3>Logged Out</h3>
         <li><a href="{% url "users:login" %}">Log In</a></li>
         <li><a href="{% url "users:signup" %}">Sign Up</a></li>
 
