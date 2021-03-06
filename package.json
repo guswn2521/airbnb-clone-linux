@@ -6,8 +6,8 @@
     "type": "git",
     "url": "git+https://github.com/guswn2521/airbnb-clone-linux.git"
   },
-  "scripts":{
-    "css":"gulp"
+  "scripts": {
+    "css": "gulp"
   },
   "homepage": "https://github.com/guswn2521/airbnb-clone-linux#readme",
   "devDependencies": {
