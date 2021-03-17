@@ -6,30 +6,27 @@
 
 {% block content %}
 
-    <div class="container rounded-xl bg-gray-800 h-50vh mx-auto mt-32 mb-24 bg-cover bg-center" style="background-image:url(https://images.unsplash.com/photo-1546385040-d48180ede560?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MzB8fGtvcmVhfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop)">
+    <div class="container mx-auto">
+        <div class="w-full -mx-32 rounded-xl bg-gray-800 h-50vh mx-auto mt-32 mb-24 bg-cover bg-center" style="background-image:url(https://images.unsplash.com/photo-1546385040-d48180ede560?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MzB8fGtvcmVhfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop)"></div>
 
-    </div>
-
-    {% for room in rooms %}
+        <div class="flex flex-wrap -mx-32">
+            {% for room in rooms %}
+                {% include 'partials/room_card.html' with room=room %}
+            {% endfor %}
+        </div>
         <h4>
-            <a href="{% url "rooms:detail" room.pk %}">
-        {{room.id}} | {{room.name}} / {{room.price}}
-            </a>
+        {% if page_obj.has_previous %}
+            <a href="/?page={{page_obj.previous_page_number}}"> < </a>
+        {% else %} < {% endif %}
+
+        Page {{page_obj.number}} / {{page_obj.paginator.num_pages}}
+
+        {% if page_obj.has_next %}
+            <a href="/?page={{page_obj.next_page_number}}"> > </a>
+        {% else %} > {% endif %}
+
         </h4>
-    {% endfor %}
-
-    <h4>
-    {% if page_obj.has_previous %}
-        <a href="/?page={{page_obj.previous_page_number}}"> < </a>
-    {% else %} < {% endif %}
-
-    Page {{page_obj.number}} / {{page_obj.paginator.num_pages}}
-
-    {% if page_obj.has_next %}
-        <a href="/?page={{page_obj.next_page_number}}"> > </a>
-    {% else %} > {% endif %}
-
-    </h4>
+    </div>
 
 {% endblock content %}
 
