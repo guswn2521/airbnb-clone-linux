@@ -64,3 +64,55 @@ class SignUpForm(forms.ModelForm):
         user.username = email
         user.set_password(password)
         user.save()
+
+
+# class UpdatePasswordForm(forms.ModelForm):
+#     class Meta:
+#         model = models.User
+#         fields = {"password"}
+
+#     password = forms.CharField(
+#         required=True,
+#         widget=forms.PasswordInput(
+#             attrs={"placeholder": "password", "class": "form-btn"}
+#         ),
+#     )
+#     new_password1 = forms.CharField(
+#         required=True,
+#         widget=forms.PasswordInput(
+#             attrs={"placeholder": "new password", "class": "form-btn"}
+#         ),
+#     )
+#     new_password2 = forms.CharField(
+#         required=True,
+#         widget=forms.PasswordInput(
+#             attrs={"placeholder": "new password check", "class": "form-btn"}
+#         ),
+#     )
+
+#     def clean_password(self):
+#         password = self.cleaned_data.get("password")
+#         password1 = self.cleaned_data.get("new_password1")
+#         password2 = self.cleaned_data.get("new_password2")
+#         print(password == models.User.password)
+#         print("기존체크 : ", password)
+#         try:
+#             print(self.user.check_password(password))
+#         except:
+#             import pdb
+
+#             pdb.set_trace()
+
+#         if not models.User.check_password(password):
+#             raise forms.ValidationError("Password is wrong.")
+#         else:
+#             if password1 != password2:
+#                 raise forms.ValidationError("Password confirmation does not match")
+#             else:
+#                 return password1
+
+#     def save(self, *args, **kwargs):
+#         user = super().save(commit=False)
+#         password = self.cleaned_data.get("password1")
+#         user.set_password(password)
+#         user.save()

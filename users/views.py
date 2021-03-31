@@ -242,7 +242,35 @@ class UpdateProfileView(UpdateView):
         print(self.request.user)
         return self.request.user
 
+    def get_form(self, form_class=None):
+        form = super().get_form(form_class=form_class)
+        for field_name in form.fields.keys():
+            form.fields[field_name].widget.attrs = {
+                "placeholder": field_name.capitalize().replace("_", " ")
+            }
+        return form
 
-class UpdatePasswordView(PasswordChangeView):
+
+class UpdatePasswordView(FormView):
+    # model = models.User
     template_name = "users/update-password.html"
-    pass
+
+    def get_form(self, form_class=None):
+        form = super().get_form(form_class=form_class)
+        form.fields["old_password"].widget.attrs = {"placeholder": "old_password"}
+        form.fields["new_password1"].widget.attrs = {"placeholder": "new_password1"}
+        form.fields["new_password2"].widget.attrs = {"placeholder": "new_password2"}
+
+        return form
+
+    # form_class = forms.UpdatePasswordForm
+    # success_url = reverse_lazy("users:update")
+
+    # def form_valid(self, form):
+    #     form.save()
+    #     password = form.cleaned_data.get("password")
+    #     user = authenticate(self.request, password=password)
+    #     if user is not None:
+    #         login(self.request, user)
+    #     user.verify_email()
+    #     return super().form_valid(form)
