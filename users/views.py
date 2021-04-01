@@ -9,10 +9,11 @@ from django.contrib.auth import authenticate, login, logout
 from django.core.files.base import ContentFile
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
-from . import forms, models
+from django.contrib.messages.views import SuccessMessageMixin
+from . import forms, models, mixins
 
 
-class LoginView(FormView):
+class LoginView(mixins.LoggedOutOnlyView, FormView):
 
     template_name = "users/login.html"
     form_class = forms.LoginForm
@@ -225,7 +226,7 @@ class UserProfileView(DetailView):
         return context
 
 
-class UpdateProfileView(UpdateView):
+class UpdateProfileView(SuccessMessageMixin, UpdateView):
     model = models.User
     template_name = "users/update-profile.html"
     fields = (
@@ -237,6 +238,7 @@ class UpdateProfileView(UpdateView):
         "language",
         "currency",
     )
+    success_message = "Profile Updated!"
 
     def get_object(self, queryset=None):
         print(self.request.user)
@@ -251,26 +253,17 @@ class UpdateProfileView(UpdateView):
         return form
 
 
-class UpdatePasswordView(FormView):
-    # model = models.User
+class UpdatePasswordView(SuccessMessageMixin, PasswordChangeView):
+
     template_name = "users/update-password.html"
+    success_message = "Password Updated!"
 
     def get_form(self, form_class=None):
         form = super().get_form(form_class=form_class)
         form.fields["old_password"].widget.attrs = {"placeholder": "old_password"}
         form.fields["new_password1"].widget.attrs = {"placeholder": "new_password1"}
         form.fields["new_password2"].widget.attrs = {"placeholder": "new_password2"}
-
         return form
 
-    # form_class = forms.UpdatePasswordForm
-    # success_url = reverse_lazy("users:update")
-
-    # def form_valid(self, form):
-    #     form.save()
-    #     password = form.cleaned_data.get("password")
-    #     user = authenticate(self.request, password=password)
-    #     if user is not None:
-    #         login(self.request, user)
-    #     user.verify_email()
-    #     return super().form_valid(form)
+    def get_success_url(self):
+        return self.request.get_success_url()
