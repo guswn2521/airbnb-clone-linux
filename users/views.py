@@ -13,7 +13,7 @@ from django.contrib.messages.views import SuccessMessageMixin
 from . import forms, models, mixins
 
 
-class LoginView(mixins.LoggedOutOnlyView, FormView):
+class LoginView(mixins.LoggedOutOnlyView, FormView, SuccessMessageMixin):
 
     template_name = "users/login.html"
     form_class = forms.LoginForm
@@ -27,6 +27,7 @@ class LoginView(mixins.LoggedOutOnlyView, FormView):
             user = authenticate(self.request, username=email, password=password)
             if user is not None:
                 login(self.request, user)
+                messages.info(self.request, f"Welcome back {user.first_name}")
         return super().form_valid(form)
 
     def get_success_url(self):
