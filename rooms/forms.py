@@ -27,3 +27,13 @@ class SearchForm(forms.Form):
         required=False,
         widget=forms.CheckboxSelectMultiple,
     )
+
+
+class createPhotoForm(forms.ModelForm):
+    class Meta:
+        model = models.Photo
+        fields = ("caption", "file")
+
+    def save(self, pk, *args, **kwargs):
+        photo = super().save(commit=False)
+        print(pk)
