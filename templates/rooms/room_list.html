@@ -24,7 +24,9 @@
                 
                 <i class="fas fa-arrow-left fa-lg"></i> 
             {% endif %}
-
+            {% for page in page_obj.paginator.page_range %}
+                <a href="/?page={{page}}" class="text-lg px-2 text-red-400">{{page}}</a>
+            {% endfor %}
             <span class="mx-3 font-medium text-lg">{{page_obj.number}} of {{page_obj.paginator.num_pages}}</span>
 
             {% if page_obj.has_next %}
@@ -34,7 +36,7 @@
             {% else %} 
                 <i class="fas fa-arrow-right fa-lg"></i> 
             {% endif %}
-
+            
         </div>
     </div>
 
