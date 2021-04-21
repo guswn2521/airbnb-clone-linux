@@ -13,6 +13,9 @@ class BookedDay(core_models.TimeStampedModel):
         verbose_name = "Booked Day"
         verbose_name_plural = "Booked Days"
 
+    def __str__(self):
+        return str(self.day)
+
 
 class Reservations(core_models.TimeStampedModel):
 
