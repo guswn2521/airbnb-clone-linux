@@ -56,7 +56,10 @@ class Reservations(core_models.TimeStampedModel):
 
     def is_finished(self):
         now = timezone.now().date()
-        return now > self.check_out
+        is_finished = now > self.check_out
+        if is_finished:
+            BookedDay.objects.filter(reservation=self).delete()
+        return is_finished
 
     is_finished.boolean = True
 
@@ -72,7 +75,7 @@ class Reservations(core_models.TimeStampedModel):
                 super().save(
                     *args, **kwargs
                 )  ## reservation 저장 -> BookedDay object create시 foreign key인 reservation이 필요해서.
-                for i in range(difference.days + 1):
+                for i in range(difference.days):
                     day = start + datetime.timedelta(days=i)
                     BookedDay.objects.create(day=day, reservation=self)
                 return
