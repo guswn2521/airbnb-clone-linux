@@ -22,7 +22,7 @@
             <form action="{% url "rooms:search" %}" method="get" class="w-9/12">
                 <input 
                 class="search-box border px-5 placeholder-gray-600 font-medium py-3 rounded-lg w-full shadow-md hover:shadow-lg focus:outline-none" name="city" type="text" 
-                placeholder={% trans "Search by City" %}>
+                placeholder="{% trans 'Search by City' %}">
             </form>
         {% endblock search-bar %}
     </div>
@@ -41,4 +41,5 @@
         }
         langSelect.addEventListener('change', handleLangChange);
     </script>
+</body>
 </html>
