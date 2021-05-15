@@ -15,6 +15,7 @@
             {% endfor %}
         </div>
 
+        {% comment %} Pagination {% endcomment %}
         <div class="flex items-center justify-center mx-auto container">
             {% if page_obj.has_previous %}
                 <a href="/?page={{page_obj.previous_page_number}}" class="text-red-400"> 
@@ -25,7 +26,12 @@
             {% endif %}
 
             {% for page in page_obj.paginator.page_range %}
-                <a href="/?page={{page}}" class="text-lg px-2 text-red-400">{{page}}</a>
+                {% if page == page_obj.number %}
+                    <a href="/?page={{page}}" class="text-red-400 text-xl mt-1 px-2 underline ">{{page}}</a>
+                {% else %}
+                    <a href="/?page={{page}}" class="text-red-400 text-lg px-2 ">{{page}}</a>
+                {% endif %}
+                
             {% endfor %}
             
             <span class="mx-3 font-medium text-lg">

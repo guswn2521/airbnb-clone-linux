@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-03 00:11+0900\n"
+"POT-Creation-Date: 2021-05-15 17:41+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,10 +22,63 @@ msgstr ""
 msgid "Search by City"
 msgstr ""
 
-#: templates/partials/footer.html:4
+#: templates/partials/footer.html:5
 msgid "Happy Day to U."
 msgstr ""
 
-#: templates/partials/footer.html:6
+#: templates/partials/footer.html:7
 msgid "All right reserved."
+msgstr ""
+
+#: templates/rooms/room_detail.html:32
+msgid "Remove from Favorites"
+msgstr ""
+
+#: templates/rooms/room_detail.html:35
+msgid "Save to Favorites"
+msgstr ""
+
+#: templates/rooms/room_list.html:32
+#, python-format
+msgid "Page %(current_page)s of %(total_pages)s"
+msgstr ""
+
+#: users/mixins.py:15 users/mixins.py:28
+msgid "Can't go there."
+msgstr ""
+
+#: users/models.py:23
+msgid "Male"
+msgstr ""
+
+#: users/models.py:24
+msgid "Female"
+msgstr ""
+
+#: users/models.py:25
+msgid "Other"
+msgstr ""
+
+#: users/models.py:32
+msgid "English"
+msgstr ""
+
+#: users/models.py:33
+msgid "Korean"
+msgstr ""
+
+#: users/models.py:53
+msgid "gender"
+msgstr ""
+
+#: users/models.py:55
+msgid "bio"
+msgstr ""
+
+#: users/models.py:58
+msgid "language"
+msgstr ""
+
+#: users/models.py:85
+msgid "Verify Airbnb Account"
 msgstr ""

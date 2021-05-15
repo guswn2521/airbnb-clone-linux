@@ -29,10 +29,14 @@
         </div>
         {% on_favs room as on_favs_boolean %}
         {% if on_favs_boolean %}
-            <a href="{% url 'lists:save-room' room.pk %}" class="btn-link block mb-10 w-2/6 bg-blue-400 ">{% trans "Remove from Favorites" %}</a>
+            <a href="{% url 'lists:toggle-room' room.pk %}?action=remove" class="block mb-10 w-2/6 text-blue-500 font-bold ">
+            <i class="fas fa-heart-broken fa-2x"></i>
+            {% trans "Remove from Favorites" %}</a>
 
         {% else %}
-            <a href="{% url 'lists:save-room' room.pk %}" class="btn-link block mb-10 w-2/6">{% trans "Save to Favorites" %}</a>
+            <a href="{% url 'lists:toggle-room' room.pk %}?action=add" class="block mb-10 w-2/6 text-pink-500 font-bold">
+            <i class="fas fa-heart fa-2x"></i>
+            {% trans "Save to Favorites" %}</a>
         {% endif %}
         <div class="flex border-section">
             <span class="mr-5 font-light">{{room.room_type}}</span>
