@@ -18,7 +18,7 @@
         {% comment %} Pagination {% endcomment %}
         <div class="flex items-center justify-center mx-auto container">
             {% if page_obj.has_previous %}
-                <a href="/?page={{page_obj.previous_page_number}}" class="text-red-400"> 
+                <a href="/?page={{page_obj.previous_page_number}}" class="text-green-400"> 
                     <i class="fas fa-arrow-left fa-lg"></i> 
                 </a>
             {% else %} 
@@ -39,7 +39,7 @@
             </span>
 
             {% if page_obj.has_next %}
-                <a href="/?page={{page_obj.next_page_number}}" class=" text-red-400"> 
+                <a href="/?page={{page_obj.next_page_number}}" class=" text-green-400"> 
                     <i class="fas fa-arrow-right fa-lg mx-2"></i> 
                 </a>
             {% else %} 
