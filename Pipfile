@@ -15,6 +15,7 @@ python-gettext = "*"
 [dev-packages]
 black = "*"
 flake8 = "*"
+awsebcli = "*"
 
 [requires]
 python_version = "3.8"
