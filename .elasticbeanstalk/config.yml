@@ -1,6 +1,6 @@
 branch-defaults:
   master:
-    environment: airbnb-clone
+    environment: airbnb-clone-test
     group_suffix: null
 environment-defaults:
   Airbnbclone-env:
