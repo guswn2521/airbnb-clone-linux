@@ -1,22 +1,12 @@
 branch-defaults:
   master:
-    environment: airbnbclone-testenv
+    environment: null
     group_suffix: null
-environment-defaults:
-  Airbnbclone-env:
-    branch: null
-    repository: null
-  airbnb-clone:
-    branch: master
-    repository: airbnb-clone
-  airbnb-clone-test:
-    branch: null
-    repository: null
 global:
   application_name: airbnb-clone-test-1
   branch: null
   default_ec2_keyname: null
-  default_platform: .NET Core running on 64bit Amazon Linux 2
+  default_platform: Python 3.8 running on 64bit Amazon Linux 2
   default_region: ap-northeast-2
   include_git_submodules: true
   instance_profile: null
