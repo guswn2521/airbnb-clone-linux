@@ -1,6 +1,6 @@
 branch-defaults:
   master:
-    environment: airbnb-clone-test
+    environment: airbnbclone-testenv
     group_suffix: null
 environment-defaults:
   Airbnbclone-env:
@@ -13,7 +13,7 @@ environment-defaults:
     branch: null
     repository: null
 global:
-  application_name: airbnb-clone
+  application_name: airbnb-clone-test-1
   branch: null
   default_ec2_keyname: null
   default_platform: .NET Core running on 64bit Amazon Linux 2
