@@ -22,7 +22,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = "hldf2b&mv%i4zf2ps0&*3u9^kf(56jz=7ptv6-0r9flytn1ay&"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get("DEBUG")
+DEBUG = True  # os.environ.get("DEBUG")
 
 ALLOWED_HOSTS = ["*"]
 
@@ -89,7 +89,7 @@ WSGI_APPLICATION = "config.wsgi.application"
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
-if DEBUG:
+if DEBUG is False:
 
     DATABASES = {
         "default": {
